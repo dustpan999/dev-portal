@@ -1,0 +1,38 @@
+name: Validate docs
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-validation-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Mintlify validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install Mintlify CLI
+        run: npm install --global @mintlify/cli@latest
+
+      - name: Validate documentation
+        run: mint validate
+
+      - name: Check broken links
+        continue-on-error: true
+        run: mint broken-links

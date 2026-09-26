@@ -22,6 +22,9 @@
     },
     "archive": {
       "description": "Stores full blockchain data and archive of historical states, allowing queries from genesis."
+    },
+    "extended": {
+      "description": "Stores more blockchain history than a standard full node, but not a complete archive of historical states. Available on Global Nodes."
     }
   },
   "protocols": {
@@ -517,14 +520,28 @@
       "warp_transactions_available": false,
       "dedicated_node_availability": "Platform",
       "mainnet": {
-        "network_name": "N/A",
+        "network_name": "Mainnet",
         "faucet_url": "N/A",
-        "locations": []
+        "locations": [
+          {
+            "cloud": "Chainstack Global Network",
+            "node_type": "Global Node",
+            "region": "global1",
+            "location": "Worldwide",
+            "deployment_options": [
+              {
+                "mode": "Full",
+                "debug_trace": true,
+                "warp_transactions": false
+              }
+            ]
+          }
+        ]
       },
       "testnets": [
         {
           "network_name": "Testnet",
-          "faucet_url": "N/A",
+          "faucet_url": "https://faucet.circle.com",
           "locations": [
             {
               "cloud": "Chainstack Global Network",
@@ -542,7 +559,7 @@
           ]
         }
       ],
-      "additional_notes": "Testnet only; mainnet not yet live."
+      "additional_notes": "N/A"
     },
     "Base": {
       "protocol_name": "Base",
@@ -1312,7 +1329,7 @@
     "Sui": {
       "protocol_name": "Sui",
       "supported_modes": [
-        "Full"
+        "Extended"
       ],
       "full_mode_query_limit": "N/A",
       "archive_mode_available": false,
@@ -1330,7 +1347,7 @@
             "location": "Worldwide",
             "deployment_options": [
               {
-                "mode": "Full",
+                "mode": "Extended",
                 "debug_trace": false,
                 "warp_transactions": false
               }
@@ -1350,7 +1367,7 @@
               "location": "Worldwide",
               "deployment_options": [
                 {
-                  "mode": "Full",
+                  "mode": "Extended",
                   "debug_trace": false,
                   "warp_transactions": false
                 }
@@ -3637,7 +3654,7 @@
     "Stellar": {
       "protocol_name": "Stellar",
       "supported_modes": [
-        "Full"
+        "Extended"
       ],
       "full_mode_query_limit": "N/A",
       "archive_mode_available": false,
@@ -3655,7 +3672,7 @@
             "location": "Worldwide",
             "deployment_options": [
               {
-                "mode": "Full",
+                "mode": "Extended",
                 "debug_trace": false,
                 "warp_transactions": false
               }
@@ -3675,7 +3692,7 @@
               "location": "Worldwide",
               "deployment_options": [
                 {
-                  "mode": "Full",
+                  "mode": "Extended",
                   "debug_trace": false,
                   "warp_transactions": false
                 }
@@ -3689,7 +3706,7 @@
     "XRP Ledger": {
       "protocol_name": "XRP Ledger",
       "supported_modes": [
-        "Full"
+        "Extended"
       ],
       "full_mode_query_limit": "N/A",
       "archive_mode_available": false,
@@ -3707,7 +3724,7 @@
             "location": "Worldwide",
             "deployment_options": [
               {
-                "mode": "Full",
+                "mode": "Extended",
                 "debug_trace": false,
                 "warp_transactions": false
               }
@@ -3727,7 +3744,7 @@
               "location": "Worldwide",
               "deployment_options": [
                 {
-                  "mode": "Full",
+                  "mode": "Extended",
                   "debug_trace": false,
                   "warp_transactions": false
                 }

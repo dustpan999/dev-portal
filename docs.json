@@ -1520,6 +1520,7 @@
                 "pages": [
                   "docs/add-ons",
                   "docs/mev-protection",
+                  "docs/optimized-submission",
                   "docs/yellowstone-grpc-geyser-plugin",
                   "docs/unlimited-node-add-on"
                 ]
@@ -1934,6 +1935,7 @@
                   "docs/blast-tooling",
                   "docs/sui-tooling",
                   "docs/sui-grpc-endpoint",
+                  "docs/sui-graphql-endpoint",
                   "docs/sui-migrate-json-rpc-to-grpc",
                   "docs/berachain-tooling",
                   "docs/monad-tooling",
@@ -3006,6 +3008,7 @@
                       "reference/monad-ethcall",
                       "reference/monad-sendrawtransaction",
                       "reference/monad-createaccesslist",
+                      "reference/monad-simulatev1",
                       "reference/monad-debug-trace-rpc-methods",
                       "reference/monad-tracetransaction",
                       "reference/monad-traceblockbynumber",
@@ -3755,6 +3758,8 @@
             "tab": "Release notes",
             "pages": [
               "changelog",
+              "changelog/chainstack-updates-september-30-2026",
+              "changelog/chainstack-updates-september-28-2026",
               "changelog/chainstack-updates-september-16-2026",
               "changelog/chainstack-updates-september-11-2026",
               "changelog/chainstack-updates-september-4-2026",

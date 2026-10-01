@@ -7,7 +7,11 @@ description: "Monad API method that returns the code at a given address. This is
 Monad API method that returns the code at a given address. This is used to check if an address is a smart contract and retrieve its bytecode.
 
 <Note>
-When called against a block older than the latest ~128 blocks, this method is treated as an archive request (2 RUs instead of 1 RU). See [request units](/docs/request-units#archive-state-methods).
+When called against a block older than the latest ~128 blocks, this method is treated as an archive request (2 RUs instead of 1 RU). See [request units](/docs/request-units#evm-methods-affected-by-block-age).
+</Note>
+
+<Note>
+Monad nodes, including Archive nodes, keep state only for a rolling window of recent blocks, several days long. For a block older than that window, this method returns `-32602` `Block requested not found`. See the Monad note on [Networks](/docs/protocols-networks).
 </Note>
 
 <Visibility for="humans">
@@ -38,7 +42,7 @@ const { ethers } = require("ethers");
 const provider = new ethers.JsonRpcProvider("CHAINSTACK_NODE_URL");
 
 async function getCode() {
-  const address = "0xAc586b65F3cd0627D2D05AdB8EF551C9d2D76E12";
+  const address = "0xFb8bf4c1CC7a94c73D209a149eA2AbEa852BC541";
   const code = await provider.getCode(address);
 
   if (code === "0x") {
@@ -58,7 +62,7 @@ node_url = "CHAINSTACK_NODE_URL"
 
 web3 = Web3(Web3.HTTPProvider(node_url))
 
-address = "0xAc586b65F3cd0627D2D05AdB8EF551C9d2D76E12"
+address = "0xFb8bf4c1CC7a94c73D209a149eA2AbEa852BC541"
 code = web3.eth.get_code(address)
 
 if code == b'':

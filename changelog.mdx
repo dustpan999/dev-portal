@@ -6,6 +6,20 @@ rss: true
 
 import { Button } from '/snippets/button.mdx';
 
+<Update label="Chainstack updates: September 30, 2026" description=" by Vladimir">
+
+**Add-ons**. On Arbitrum, Base, Arc, and Robinhood Chain, MEV protection is renamed to [Optimized Submission](/docs/optimized-submission). Nodes that had MEV protection enabled now have Optimized Submission enabled.
+
+<Button href="/changelog/chainstack-updates-september-30-2026">Read more</Button>
+</Update>
+
+<Update label="Chainstack updates: September 28, 2026" description=" by Vladimir">
+
+**Protocols**. Sui Mainnet Global Nodes now serve the GraphQL RPC API at `/graphql`, alongside gRPC and JSON-RPC on the same endpoint and auth token. Use GraphQL for filtered, paginated reads — transactions by address, events by type, objects by owner and type — that have no gRPC equivalent. Each request is 1 RU, the same as gRPC. Point lookups and unfiltered lists reach back to January 2026, and that window grows with the chain; filtered transaction and event queries cover a rolling window of up to 90 days. See [Sui GraphQL endpoint](/docs/sui-graphql-endpoint).
+
+<Button href="/changelog/chainstack-updates-september-28-2026">Read more</Button>
+</Update>
+
 <Update label="Chainstack updates: September 16, 2026" description=" by Ake">
 
 **Protocols**. Arc Mainnet is now available on Chainstack. Arc is Circle's USDC-native, EVM-compatible L1 for stablecoin payments. You can deploy [Global Nodes](/docs/global-elastic-node) and [Dedicated Nodes](/docs/dedicated-node) for Arc Mainnet, in Full and Archive modes with debug and trace.
@@ -24,7 +38,7 @@ import { Button } from '/snippets/button.mdx';
 
 <Update label="Chainstack updates: September 4, 2026" description=" by Ake">
 
-**Protocols**. Chainstack TON nodes now serve the Toncenter API v4 — REST and WebSocket — alongside v2 and v3 on the same endpoint and API key, on Mainnet and Testnet. v4 adds richer typed responses, block-pinned cacheable URLs, and real-time block and account subscriptions over WebSocket.
+**Protocols**. Chainstack TON Global Nodes now serve TON API v4 — REST and WebSocket — alongside v2 and v3 on the same endpoint and auth token, on Mainnet and Testnet. v4 adds block-pinned, cacheable URLs for blocks, account state, and get-method calls, and WebSocket streams of new blocks and of the accounts changed in each block. See [TON API v4](/docs/ton-choosing-v2-or-v3#ton-api-v4).
 
 <Button href="/changelog/chainstack-updates-september-4-2026">Read more</Button>
 </Update>

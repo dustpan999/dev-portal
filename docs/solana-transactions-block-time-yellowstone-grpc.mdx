@@ -33,7 +33,7 @@ The join key is `slot`. A block-metadata update for slot N normally arrives *aft
 4. Evict a slot from both maps once it goes `SLOT_DEAD` or the confirmed tip passes it (a skipped slot).
 
 <Tip>
-  This pattern uses one filter each of three different types on a single connection, well within the Geyser add-on's limit of five concurrent filters of the same type per connection. See [Yellowstone gRPC Geyser plugin](/docs/yellowstone-grpc-geyser-plugin) for the full limits.
+  This pattern uses one filter each of three different types in a single subscribe request, well within the per-type filter limits. See [Yellowstone gRPC Geyser plugin filter limits](/docs/yellowstone-grpc-geyser-plugin#filter-limits) for the full limits.
 </Tip>
 
 ## Why not the alternatives
@@ -222,7 +222,7 @@ For why slots and blocks diverge, see [Solana: understanding the difference betw
 
 ### Answer pings and lift the message cap
 
-The server sends periodic pings; reply with a `SubscribeRequestPing` on the same stream so that an idle load balancer does not drop the connection. That is why the example keeps the send half-stream open with a queue. Raise the gRPC receive limit above its 4 MB default to avoid truncation on busy slots. Chainstack Solana nodes have Jito ShredStream enabled by default, which improves tail latency and consistency for Geyser streaming.
+The server sends periodic pings; reply with a `SubscribeRequestPing` on the same stream so that an idle load balancer does not drop the connection. That is why the example keeps the send half-stream open with a queue. Raise the gRPC receive limit above its 4 MB default to avoid truncation on busy slots.
 
 ### Recover after a disconnect with from_slot
 

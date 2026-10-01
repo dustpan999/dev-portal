@@ -7,7 +7,7 @@ description: "Ethereum API method that enables instant execution of a new messag
 Ethereum API method that enables instant execution of a new message call without requiring the creation of a transaction on the blockchain. This can be useful for testing and debugging by simulating transfers or smart contract transactions and retrieving data from the blockchain.
 
 <Note>
-When called against a block older than the latest ~128 blocks, this method is treated as an archive request (2 RUs instead of 1 RU). See [request units](/docs/request-units#archive-state-methods).
+When called against a block older than the latest ~128 blocks, this method is treated as an archive request (2 RUs instead of 1 RU). See [request units](/docs/request-units#evm-methods-affected-by-block-age).
 </Note>
 
 <Visibility for="humans">
@@ -49,6 +49,42 @@ The interactive example in this page uses `eth_call` to call the `poolInfo` meth
 See the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block).
 </Note>
 
+
+### State override (optional)
+
+`eth_call` accepts an optional third parameter: a state override set that changes account state for this call only. Nothing is written to the chain. The set is an object keyed by account address, and each address can override:
+
+* `balance` — the account balance in wei, hex-encoded
+* `nonce` — the account nonce, hex-encoded
+* `code` — the bytecode to run at the address
+* `state` — storage slot values that replace the account's entire storage
+* `stateDiff` — storage slot values to change, keeping the rest of the storage
+
+This example puts bytecode that returns `42` at an unused address, then calls that address:
+
+```bash
+curl --request POST \
+  --url CHAINSTACK_NODE_URL \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "eth_call",
+    "params": [
+      { "to": "0x00000000000000000000000000000000c0ffee42", "data": "0x" },
+      "latest",
+      { "0x00000000000000000000000000000000c0ffee42": { "code": "0x602a60005260206000f3" } }
+    ]
+  }'
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x000000000000000000000000000000000000000000000000000000000000002a"
+}
+```
 
 ## Response
 

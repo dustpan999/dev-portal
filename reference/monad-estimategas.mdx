@@ -10,6 +10,10 @@ Monad API method that generates and returns an estimate of how much gas is neces
 **Monad-specific behavior**: Does not accept EIP-4844 (blob) transaction type, as EIP-4844 is not supported on Monad.
 </Note>
 
+<Note>
+Monad nodes, including Archive nodes, keep state only for a rolling window of recent blocks, several days long. For a block older than that window, this method returns `-32602` `Block requested not found`. See the Monad note on [Networks](/docs/protocols-networks).
+</Note>
+
 <Visibility for="humans">
 <Check>
 **Get your own node endpoint today**
@@ -45,7 +49,7 @@ const provider = new ethers.JsonRpcProvider("CHAINSTACK_NODE_URL");
 async function estimateGas() {
   // Estimate gas for name() call on Wrapped Monad (WMON) contract
   const gasEstimate = await provider.estimateGas({
-    to: "0x760AfE86e5de5fa0Ee542fc7B7B713e1c5425701",
+    to: "0xFb8bf4c1CC7a94c73D209a149eA2AbEa852BC541",
     data: "0x06fdde03" // name()
   });
   console.log(`Estimated gas: ${gasEstimate.toString()}`);
@@ -63,7 +67,7 @@ web3 = Web3(Web3.HTTPProvider(node_url))
 
 # Estimate gas for name() call on Wrapped Monad (WMON) contract
 gas_estimate = web3.eth.estimate_gas({
-    'to': '0x760AfE86e5de5fa0Ee542fc7B7B713e1c5425701',
+    'to': '0xFb8bf4c1CC7a94c73D209a149eA2AbEa852BC541',
     'data': '0x06fdde03' # name()
 })
 print(f'Estimated gas: {gas_estimate}')

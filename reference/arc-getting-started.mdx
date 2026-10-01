@@ -33,7 +33,7 @@ Chainstack serves both Arc Mainnet and Arc Testnet. The two networks carry diffe
 | Execution client | Reth |
 | Consensus | Malachite BFT |
 | Block time | ~0.5s |
-| Node modes | Full on Global Nodes, Full and Archive on Dedicated Nodes |
+| Node modes | Full and Archive |
 | Explorer | [explorer.arc.io](https://explorer.arc.io) |
   </Tab>
   <Tab title="Testnet">
@@ -61,14 +61,14 @@ Chainstack Arc nodes expose `eth`, `debug`, `trace`, `txpool`, `net`, `web3`, an
 
 ## Two things that differ from other EVM chains
 
-**Pending transactions are not observable.** Arc rejects both `eth_newPendingTransactionFilter` and `eth_subscribe("newPendingTransactions")` with `-32001`. The `txpool_*` methods do work, so you can inspect the pool, but you cannot stream new pending transactions as they arrive.
+**Pending transactions are not observable.** Arc rejects both `eth_newPendingTransactionFilter` and `eth_subscribe("newPendingTransactions")` with `-32001`. `txpool_status` works, but `txpool_content`, `txpool_contentFrom`, and `txpool_inspect` are not available on Global Nodes and Trader Nodes, so you can read the pool's transaction counts but not its contents.
 
 **Most historical queries bill as archive.** The standard rule is that a request 127 or more blocks behind the tip bills as archive. At roughly 0.5 seconds per block that covers only about a minute of history, against roughly 25 minutes on Ethereum. See [Request units](/docs/request-units#evm-methods-affected-by-block-age).
 
 ## Getting an endpoint
 
 1. [Sign up with Chainstack](https://console.chainstack.com/).
-2. [Deploy a node](/docs/manage-your-networks#join-a-public-network) on Arc Mainnet or Arc Testnet. Arc Testnet offers Full and Archive on Global Nodes. Arc Mainnet Global Nodes are Full, and Archive is available on Dedicated Nodes.
+2. [Deploy a node](/docs/manage-your-networks) on Arc Mainnet or Arc Testnet. Arc Mainnet and Arc Testnet offer Full and Archive on Global Nodes.
 3. [View node access and credentials](/docs/manage-your-node#view-node-access-and-credentials).
 
 Every method page in this section carries a **Try it** panel wired to a public Arc Testnet endpoint, so you can run any call before deploying anything.
